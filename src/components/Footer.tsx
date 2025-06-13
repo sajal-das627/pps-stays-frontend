@@ -11,7 +11,7 @@ const Footer = () => {
         backgroundColor: 'rgba(255, 255, 255, 0.7)',
         textAlign: 'center'
       }}
-    >
+    > 
       <Typography variant="body2" color="text.secondary">
         © {new Date().getFullYear()} PPS One Stay. All rights reserved.
       </Typography>
