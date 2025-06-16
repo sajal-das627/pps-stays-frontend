@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import PPSOneToken from './components/PPSAuth/PPSOneToken';
 import ProtectedRoute from './utils/ProtectedRoute';
+import HotelListingPage from './pages/HotelListingPage'; // 🔁 Add this line
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route path="/hotels" element={<HotelListingPage />} /> {/* 🔁 New Route */}
     </Routes>
   );
 }
