@@ -15,7 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <HideOnScroll>
+    // <HideOnScroll>
       <AppBar position="sticky" color="transparent" elevation={0}>
         <Toolbar
           sx={{
@@ -68,7 +68,7 @@ const Header = () => {
           </Box>
         </Toolbar>
       </AppBar>
-    </HideOnScroll>
+    // </HideOnScroll>
   );
 };
 
