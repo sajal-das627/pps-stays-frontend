@@ -9,6 +9,8 @@ import {
   Divider,
 } from '@mui/material';
 
+import DoneIcon from '@mui/icons-material/Done';
+
 export interface Hotel {
   name: string;
   rating: number;
@@ -34,6 +36,11 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelect }) => (
       p: 2,
       borderLeft: '5px solid #f44336',
       cursor: onSelect ? 'pointer' : 'default',
+      flexDirection: {
+        xs: 'column', // phones
+        sm: 'column', // tablets
+        md: 'row',    // laptops and up
+      },
     }}
     onClick={() => onSelect?.(hotel)}
   >
@@ -48,37 +55,97 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelect }) => (
     </Box>
 
     {/* main details */}
-    <Box flex={1} pl={2}>
+    <Box flex={1} pl={2}
+      sx={{
+        marginBottom: {
+          xs: '1rem',
+          sm: '1rem',
+        },
+      }}
+    >
       <Box display="flex" justifyContent="space-between" flexWrap="wrap">
-        <Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+          }} 
+          // display="flex"
+        >
           <Typography variant="body2" fontWeight={600}>
             4★ Hotel
           </Typography>
+          <Box 
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              flex: 1,
+              gap: 1,
+            }}
+          >
+            <Typography variant="caption">{hotel.reviews} Ratings</Typography>
+            <Chip 
+              label={`${hotel.rating}/5`} 
+              color="success" 
+              sx={{
+                borderRadius: '3px',
+              }}
+            />
+          </Box>
+        </Box>
+        <Box>
           <Typography variant="h6">{hotel.name}</Typography>
           <Typography variant="body2" color="text.secondary">
             <strong>📍 Irving</strong> • {hotel.distance}
           </Typography>
         </Box>
-        <Box textAlign="right">
-          <Chip label={`${hotel.rating}/5`} color="success" />
-          <Typography variant="caption">{hotel.reviews} Ratings</Typography>
-        </Box>
       </Box>
 
-      <Box display="flex" alignItems="center" mt={1} flexWrap="wrap" gap={1}>
+      <Box display="flex" alignItems="center" mt={1} flexWrap="wrap" gap={1} mb={2}>
         {hotel.amenities.slice(0, 3).map((item) => (
-          <Chip key={item} label={item} size="small" variant="outlined" />
+          <Chip key={item} label={item} size="small" variant="outlined"
+            sx={{
+              borderRadius: '3px',
+            }}
+          />
         ))}
         {hotel.amenities.length > 3 && <Chip label="& more" size="small" color="primary" />}
       </Box>
 
-      <Typography
+      {/* <Typography
         variant="body2"
         color="text.secondary"
         sx={{ mt: 1 }}
       >
         ✔️ Free Cancellation • Free stay for the child • Book @ ₹0 • Breakfast available at extra charges
-      </Typography>
+      </Typography> */}
+
+      <Box>
+        {[
+          'Free Cancellation',
+          'Free stay for the child',
+          'Book @ ₹0 Available',
+          'Breakfast available at extra charges'
+        ].map((sentence, index) => (
+          <Typography key={index} 
+            sx={{ 
+              fontSize: '12px',
+              lineHeight: '0.5 rem',
+            }}
+          >
+            <DoneIcon sx={{
+              width: '12px',
+              height: '16px',
+              fill: 'rgb(21 111 26)',
+              verticalAlign: 'middle', 
+              mr: 0.5,
+            }}
+            /> {sentence}
+          </Typography>
+        ))}
+      </Box>
     </Box>
 
     <Divider orientation="vertical" flexItem sx={{ mx: 2 }} />
@@ -89,7 +156,7 @@ const HotelCard: React.FC<HotelCardProps> = ({ hotel, onSelect }) => (
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
-      textAlign="right"
+      textAlign="center"
     >
       <Box>
         <Typography

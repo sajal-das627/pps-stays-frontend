@@ -127,7 +127,7 @@ const HotelListingPage = () => {
                             size="small"
                         />
                     </Grid>
-                    <Grid item xs={12} md={3}>
+                    <Grid item xs={12} md={4}>
                         <Box display="flex" alignItems="center" position="relative">
                             <TextField
                                 fullWidth
@@ -242,6 +242,69 @@ const HotelListingPage = () => {
                 </Grid>
             </Box>
 
+            {/* Sort & Search */}
+            <Box
+                px={{ xs: 2, md: 6 }}
+                pt={2}
+                display="flex"
+                flexDirection={{ xs: 'column', md: 'row' }}
+                justifyContent="space-between"
+                alignItems={{ xs: 'stretch', md: 'center' }}
+                gap={2}
+            >
+                <Box display="flex" alignItems="center" gap={1} flexWrap="wrap">
+                    <Typography variant="body2" fontWeight={500}>Sort by:</Typography>
+                    <Button
+                        size="small"
+                        variant={sortBy === 'Most Popular' ? 'contained' : 'outlined'}
+                        onClick={() => setSortBy('Most Popular')}
+                        sx={{ textTransform: 'none' }}
+                    >
+                        Most Popular
+                    </Button>
+                    <Button
+                        size="small"
+                        variant={sortBy === 'Price - Low to High' ? 'contained' : 'outlined'}
+                        onClick={() => setSortBy('Price - Low to High')}
+                        sx={{ textTransform: 'none' }}
+                    >
+                        Price - Low to High
+                    </Button>
+                    <Button
+                        size="small"
+                        variant={sortBy === 'Price - High to Low' ? 'contained' : 'outlined'}
+                        onClick={() => setSortBy('Price - High to Low')}
+                        sx={{ textTransform: 'none' }}
+                    >
+                        Price - High to Low
+                    </Button>
+                    <Button
+                        size="small"
+                        variant={sortBy === 'Highest Reviews' ? 'contained' : 'outlined'}
+                        onClick={() => setSortBy('Highest Reviews')}
+                        sx={{ textTransform: 'none' }}
+                    >
+                        Highest Reviews
+                    </Button>
+                </Box>
+
+                {/* Search Field Right Aligned */}
+                <TextField
+                    size="small"
+                    placeholder="Search Location or Property Name"
+                    sx={{ minWidth: '280px' }}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+            </Box>
+
+
+
             {/* Main Section */}
             <Box px={{ xs: 2, md: 6 }} py={4}>
                 <Grid container spacing={3}>
@@ -262,67 +325,6 @@ const HotelListingPage = () => {
 
                     {/* Listing Section */}
                     <Grid item xs={12} md={9}>
-                        {/* Sort & Search */}
-                        <Box
-                            px={{ xs: 2, md: 6 }}
-                            pt={2}
-                            display="flex"
-                            flexDirection={{ xs: 'column', md: 'row' }}
-                            justifyContent="space-between"
-                            alignItems={{ xs: 'stretch', md: 'center' }}
-                            gap={2}
-                        >
-                            <Box display="flex" alignItems="center" gap={1} flexWrap="wrap">
-                                <Typography variant="body2" fontWeight={500}>Sort by:</Typography>
-                                <Button
-                                    size="small"
-                                    variant={sortBy === 'Most Popular' ? 'contained' : 'outlined'}
-                                    onClick={() => setSortBy('Most Popular')}
-                                    sx={{ textTransform: 'none' }}
-                                >
-                                    Most Popular
-                                </Button>
-                                <Button
-                                    size="small"
-                                    variant={sortBy === 'Price - Low to High' ? 'contained' : 'outlined'}
-                                    onClick={() => setSortBy('Price - Low to High')}
-                                    sx={{ textTransform: 'none' }}
-                                >
-                                    Price - Low to High
-                                </Button>
-                                <Button
-                                    size="small"
-                                    variant={sortBy === 'Price - High to Low' ? 'contained' : 'outlined'}
-                                    onClick={() => setSortBy('Price - High to Low')}
-                                    sx={{ textTransform: 'none' }}
-                                >
-                                    Price - High to Low
-                                </Button>
-                                <Button
-                                    size="small"
-                                    variant={sortBy === 'Highest Reviews' ? 'contained' : 'outlined'}
-                                    onClick={() => setSortBy('Highest Reviews')}
-                                    sx={{ textTransform: 'none' }}
-                                >
-                                    Highest Reviews
-                                </Button>
-                            </Box>
-
-                            {/* Search Field Right Aligned */}
-                            <TextField
-                                size="small"
-                                placeholder="Search Location or Property Name"
-                                sx={{ minWidth: '280px' }}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                            />
-                        </Box>
-
 
                         {/* Hotel Cards */}
                         <Box display="flex" flexDirection="column" gap={2}>
